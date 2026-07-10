@@ -1,6 +1,11 @@
 .DS_Store
+
+# Terraform
 .terraform/
 *.tfstate
 *.tfstate.backup
 *.tfplan
 
+# Terraform crash logs
+crash.log
+crash.*.log
