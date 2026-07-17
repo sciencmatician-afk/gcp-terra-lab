@@ -1,0 +1,82 @@
+[
+  {
+    "location": {
+      "file": "policies/tests/ac3_no_public_test.rego",
+      "row": 101,
+      "col": 1
+    },
+    "package": "data.compliance.ac3_test",
+    "name": "test_secure_bucket_passes",
+    "duration": 9942583
+  },
+  {
+    "location": {
+      "file": "policies/tests/ac3_no_public_test.rego",
+      "row": 106,
+      "col": 1
+    },
+    "package": "data.compliance.ac3_test",
+    "name": "test_public_bucket_fails",
+    "duration": 10305293
+  },
+  {
+    "location": {
+      "file": "policies/tests/cm6_required_tags_test.rego",
+      "row": 18,
+      "col": 1
+    },
+    "package": "data.compliance.cm6_test",
+    "name": "test_complete_passes",
+    "duration": 10519644
+  },
+  {
+    "location": {
+      "file": "policies/tests/ac3_no_public_test.rego",
+      "row": 114,
+      "col": 1
+    },
+    "package": "data.compliance.ac3_test",
+    "name": "test_open_firewall_fails",
+    "duration": 1257299
+  },
+  {
+    "location": {
+      "file": "policies/tests/sc28_encryption_test.rego",
+      "row": 44,
+      "col": 1
+    },
+    "package": "data.compliance.sc28_test",
+    "name": "test_compliant_passes",
+    "duration": 923752
+  },
+  {
+    "location": {
+      "file": "policies/tests/cm6_required_tags_test.rego",
+      "row": 19,
+      "col": 1
+    },
+    "package": "data.compliance.cm6_test",
+    "name": "test_partial_fails",
+    "duration": 13482075
+  },
+  {
+    "location": {
+      "file": "policies/tests/cm6_required_tags_test.rego",
+      "row": 20,
+      "col": 1
+    },
+    "package": "data.compliance.cm6_test",
+    "name": "test_no_labels_fail",
+    "duration": 3231922
+  },
+  {
+    "location": {
+      "file": "policies/tests/sc28_encryption_test.rego",
+      "row": 48,
+      "col": 1
+    },
+    "package": "data.compliance.sc28_test",
+    "name": "test_noncompliant_fails",
+    "duration": 2930851
+  }
+]
