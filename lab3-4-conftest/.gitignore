@@ -1,0 +1,16 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+plan.json
+
+# Terraform generated files in broken test
+broken/tfplan
+broken/plan.json
+broken/.terraform.lock.hcl
+
+# Temporary bundles
+*.bundle
+# Lab test workspace
+broken/
