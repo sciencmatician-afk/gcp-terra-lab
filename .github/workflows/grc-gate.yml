@@ -86,7 +86,7 @@ jobs:
           tfsec . --format sarif --out ../../../evidence/tfsec.sarif || true
           python3 -c '
           import json, sys
-          d = json.load(open("../evidence/tfsec.sarif"))
+          d = json.load(open("../../../evidence/tfsec.sarif"))
           high = sum(
 
               1 for run in d.get("runs", [])
