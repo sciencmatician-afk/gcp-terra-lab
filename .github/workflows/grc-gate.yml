@@ -48,7 +48,12 @@ jobs:
         run: |
           terraform init -input=false
           terraform validate
-          terraform plan -out=tfplan -no-color | tee plan.txt
+          terraform plan \
+           -var="project_name=grc-capstone" \
+           -var="environment=dev" \
+           -var="bucket_suffix=grc-evidence" \
+           -out=tfplan \
+           -no-color | tee plan.txt
           terraform show -json tfplan > plan.json
 
       - name: Conftest policy gate
@@ -67,7 +72,7 @@ jobs:
           } > ../../../evidence/conftest-results.json
           python3 -c '
           import json, sys
-          d = json.load(open("../evidence/conftest-results.json"))
+          d = json.load(open("../../../evidence/conftest-results.json"))
           fails = sum(len(r.get("failures") or []) for results in d for r in results)
           print(f"conftest failures: {fails}")
           sys.exit(0 if fails == 0 else 1)
