@@ -54,8 +54,39 @@ resource "aws_s3_bucket" "primary" {
 resource "aws_s3_bucket" "log" {
   bucket = "${local.bucket_name}-logs"
 }
+#
+# Customer Managed KMS Key
+# SC-12, SC-13, SC-28
+#
+resource "aws_kms_key" "s3" {
+  description             = "KMS key for compliant S3 encryption"
+  enable_key_rotation     = true
+  deletion_window_in_days = 30
+}
+#
+# Logging bucket versioning
+# AU-11, CP-10
+#
+resource "aws_s3_bucket_versioning" "log" {
 
+  bucket = aws_s3_bucket.log.id
 
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+#
+# S3 Access Logging
+# AU-2, AU-12
+#
+resource "aws_s3_bucket_logging" "primary" {
+
+  bucket = aws_s3_bucket.primary.id
+
+  target_bucket = aws_s3_bucket.log.id
+
+  target_prefix = "s3-access-logs/"
+}
 #
 # Versioning
 #
@@ -82,6 +113,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "primary" {
 
       sse_algorithm = "AES256"
 
+      kms_master_key_id = aws_kms_key.s3.arn
+
     }
   }
 }
@@ -90,7 +123,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "log" {
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+      sse_algorithm     = "AES256"
+      kms_master_key_id = aws_kms_key.s3.arn
     }
   }
 }
